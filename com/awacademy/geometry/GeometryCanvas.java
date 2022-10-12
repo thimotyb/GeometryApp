@@ -30,7 +30,8 @@ public class GeometryCanvas {
 
         //double distance = Math.sqrt(Math.pow(point2_x- point1_x, 2) + Math.pow(point2_y - point1_y, 2));
         //double distance = Math.sqrt(Math.pow(point2[0] - point1[0], 2) + Math.pow(point2[1] - point1[1], 2));
-        double distance = Math.sqrt(Math.pow(p2.getX()- p1.getX(), 2) + Math.pow(p2.getY() - p1.getY(), 2));
+        //double distance = Math.sqrt(Math.pow(p2.getX()- p1.getX(), 2) + Math.pow(p2.getY() - p1.getY(), 2));
+        double distance = p1.calculateDistance(p2);
 
         // Non-static method: it is applied at instance level (the "real" point, e.g. p2)
         p2.moveHorizontally(5);

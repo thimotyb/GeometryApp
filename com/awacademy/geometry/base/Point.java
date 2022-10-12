@@ -28,6 +28,10 @@ public class Point {
         this.x += offset;
     }
 
+    public double calculateDistance(Point anotherPoint) {
+        return Math.sqrt(Math.pow(anotherPoint.getX()- this.getX(), 2) + Math.pow(anotherPoint.getY() - this.getY(), 2));
+    }
+
     // This is static, generic, usable on the class directly
     // Usage as Immutable class
     public static Point moveAnyPointHorizontally(Point p, int offset) {
