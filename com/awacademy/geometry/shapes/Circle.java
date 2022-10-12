@@ -1,3 +1,7 @@
+package com.awacademy.geometry.shapes;
+
+import com.awacademy.geometry.base.Point;
+
 public class Circle {
 
     Point center;
