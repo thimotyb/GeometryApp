@@ -1,5 +1,7 @@
 package com.awacademy.geometry.base;
 
+import java.util.Objects;
+
 public class Point {
 
     // Fields
@@ -30,6 +32,27 @@ public class Point {
 
     public double calculateDistance(Point anotherPoint) {
         return Math.sqrt(Math.pow(anotherPoint.getX()- this.getX(), 2) + Math.pow(anotherPoint.getY() - this.getY(), 2));
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return getX() == point.getX() && getY() == point.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY());
     }
 
     // This is static, generic, usable on the class directly

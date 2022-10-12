@@ -43,11 +43,23 @@ public class GeometryCanvas {
         // Static method: it is applied at class level (I don't need to know a specific instance to use it)
         Point p3 = Point.moveAnyPointHorizontally(p1, 3);
 
-        System.out.println(String.format("THe current coordinates of p2 are: (%d, %d)", p2.getX(), p2.getY()));
-        System.out.println(String.format("THe current coordinates of p1 are: (%d, %d)", p1.getX(), p1.getY()));
-        System.out.println(String.format("THe current coordinates of p3 are: (%d, %d)", p3.getX(), p3.getY()));
+        System.out.println(p2.toString());
+        System.out.println(p1.toString());
+        System.out.println(p3.toString());
 
         System.out.println("The distance is: "+distance);
+
+        // A programmer is a DRY person
+
+        Point p4 = Point.moveAnyPointHorizontally(p1, 0);
+        //Point p4 = p1;
+        System.out.println(((Object)p1).toString());
+        System.out.println(((Object)p4).toString());
+        if (p1.equals(p4)) {
+            System.out.println("The two points are equal.");
+        } else {
+            System.out.println("The two points are DIFFERENT.");
+        }
 
     }
 
