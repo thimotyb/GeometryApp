@@ -5,9 +5,7 @@ import com.awacademy.geometry.shapes.Circle;
 import com.awacademy.geometry.shapes.Rectangle;
 import com.awacademy.geometry.shapes.Square;
 
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class GeometryCanvas {
 
@@ -15,12 +13,19 @@ public class GeometryCanvas {
     public static int x;
     public static int y;
     public static int length;
-    public static int attempts = 0;
-    public static Object[] array = new Object[attempts];
+    //public static int attempts = 0;
+    //public static Object[] array = new Object[attempts];
+    public static List<Object> array = new ArrayList<>();
+    public static Map<String, List<Object>> myShapeDictionary = new LinkedHashMap<>();
 
     public static void main(String[] args) {
 
+        myShapeDictionary.put("Squares", new ArrayList<Object>());
+        myShapeDictionary.put("Circles", new ArrayList<Object>());
+        myShapeDictionary.put("Rectangles", new ArrayList<Object>());
+
         while (command != 4) {
+
             boolean thereWasAConversionError = false;
             Scanner sc = new Scanner(System.in);
             System.out.println("Which shape would you like to add?\n1. Square\n2. Circle\n3. Rectangle\n4. Stop and exit");
@@ -35,7 +40,7 @@ public class GeometryCanvas {
             try {
 
                 if (command == 1 && !thereWasAConversionError) {
-                    array = Arrays.copyOf(array, array.length + 1);
+                    //array = Arrays.copyOf(array, array.length + 1);
                     System.out.println("x-coordinate of upper left corner?");
                     x = sc.nextInt();
                     System.out.println("y-coordinate of upper left corner?");
@@ -44,9 +49,10 @@ public class GeometryCanvas {
                     length = sc.nextInt();
                     Point corner1 = new Point(x, y);
                     Square square = new Square(corner1, length);
-                    array[attempts] = square;
+                    //array.add(square);
+                    myShapeDictionary.get("Squares").add(square);
                 } else if (command == 2 && !thereWasAConversionError) {
-                    array = Arrays.copyOf(array, array.length + 1);
+                    //array = Arrays.copyOf(array, array.length + 1);
                     System.out.println("x-coordinate of center point?");
                     x = sc.nextInt();
                     System.out.println("y-coordinate of center point?");
@@ -55,9 +61,10 @@ public class GeometryCanvas {
                     length = sc.nextInt();
                     Point center = new Point(x, y);
                     Circle circle = new Circle(center, length);
-                    array[attempts] = circle;
+                    //array.add(circle);
+                    myShapeDictionary.get("Circles").add(circle);
                 } else if (command == 3 && !thereWasAConversionError) {
-                    array = Arrays.copyOf(array, array.length + 1);
+                    //array = Arrays.copyOf(array, array.length + 1);
                     System.out.println("x-coordinate of upper left corner?");
                     x = sc.nextInt();
                     System.out.println("y-coordinate of upper left corner?");
@@ -68,7 +75,8 @@ public class GeometryCanvas {
                     int length2 = sc.nextInt();
                     Point corner1 = new Point(x, y);
                     Rectangle rectangle = new Rectangle(corner1, length, length2);
-                    array[attempts] = rectangle;
+                    //array.add(rectangle);
+                    myShapeDictionary.get("Rectangles").add(rectangle);
                 } else if (command == 4 && !thereWasAConversionError) {
                     break;
                 } else {
@@ -78,14 +86,20 @@ public class GeometryCanvas {
                 System.out.println("You didn't type a number");
             }
 
-            attempts++;
+            //attempts++;
         }
 
-        System.out.println(Arrays.toString(array));
+        for (String key: myShapeDictionary.keySet()) {
+            List<Object> array = myShapeDictionary.get(key);
+            if (array.size() == 0) {
+                System.out.println(String.format("There is nothing to print for key %s.", key));
+            } else {
+                System.out.println(array);
+            }
+        }
 
-    }
-
-    public static void oldExamples() {
+        }
+        public static void oldExamples() {
 
         //        int point1_x = 1;
 //        int point1_y = 2;
