@@ -3,6 +3,8 @@ package com.awacademy.geometry.shapes;
 import com.awacademy.geometry.base.Point;
 import com.awacademy.geometry.base.Shape;
 
+import java.util.Scanner;
+
 public class Circle implements Shape {
 
     Point center;
@@ -26,7 +28,7 @@ public class Circle implements Shape {
     }
 
     public double calculatePerimeter() {
-        return 2*3.14d*radius;
+        return 2 * 3.14d * radius;
     }
 
 }

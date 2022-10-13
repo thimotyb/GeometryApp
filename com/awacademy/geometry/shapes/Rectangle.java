@@ -3,6 +3,8 @@ package com.awacademy.geometry.shapes;
 import com.awacademy.geometry.base.Point;
 import com.awacademy.geometry.base.Shape;
 
+import java.util.Scanner;
+
 public class Rectangle implements Shape {
 
     // USe the same ideas

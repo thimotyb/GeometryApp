@@ -2,9 +2,7 @@ package com.awacademy.geometry;
 
 import com.awacademy.geometry.base.Point;
 import com.awacademy.geometry.base.Shape;
-import com.awacademy.geometry.shapes.Circle;
-import com.awacademy.geometry.shapes.Rectangle;
-import com.awacademy.geometry.shapes.Square;
+import com.awacademy.geometry.factory.ShapeFactory;
 
 import java.util.*;
 
@@ -19,17 +17,55 @@ public class GeometryCanvas {
     public static List<Object> array = new ArrayList<>();
     public static Map<String, List<Shape>> myShapeDictionary = new LinkedHashMap<>();
 
+    public static ShapeFactory factory = new ShapeFactory();
+
+    //public static String[] shapeNames = { "Circles", "Squares", "Rectangles" };
+
+    public static LinkedHashMap<Integer, String> supportedShapes = new LinkedHashMap<>();
+
+    /**
+     * OCP: Open Closed Principle
+     * Open to Extension, Closed to Modification
+     * @param args
+     */
     public static void main(String[] args) {
 
-        myShapeDictionary.put("Circles", new ArrayList<Shape>());
-        myShapeDictionary.put("Squares", new ArrayList<Shape>());
-        myShapeDictionary.put("Rectangles", new ArrayList<Shape>());
+        supportedShapes.put(Integer.valueOf(1), "Square");
+        supportedShapes.put(Integer.valueOf(2), "Circle");
+        supportedShapes.put(Integer.valueOf(3), "Rectangle");
 
-        while (command != 4) {
+        // TODO: Remember to align the keys of the objects with their types
+        //myShapeDictionary.put(shapeNames[0], new ArrayList<Shape>());
+        //myShapeDictionary.put(shapeNames[1], new ArrayList<Shape>());
+        //myShapeDictionary.put(shapeNames[2], new ArrayList<Shape>());
+
+        for (int i: supportedShapes.keySet()) {
+            myShapeDictionary.put(supportedShapes.get(i), new ArrayList<Shape>());
+        }
+
+        final int NUMBER_OF_MENU_ITEMS = supportedShapes.size()+1;
+
+        while (command != NUMBER_OF_MENU_ITEMS) {
 
             boolean thereWasAConversionError = false;
             Scanner sc = new Scanner(System.in);
-            System.out.println("Which shape would you like to add?\n1. Square\n2. Circle\n3. Rectangle\n4. Stop and exit");
+
+            StringBuilder menu = new StringBuilder("Which shape would you like to add?\n");
+
+            for (int i: supportedShapes.keySet()) {
+                menu.append(i+". "+supportedShapes.get(i)+"\n");
+            }
+
+            /*
+            menu.append("1. "+supportedShapes.get(1)+"\n");
+            menu.append("2. "+supportedShapes.get(2)+"\n");
+            menu.append("3. "+supportedShapes.get(3)+"\n");
+            */
+
+            menu.append((NUMBER_OF_MENU_ITEMS)+". Stop and Exit");
+
+            System.out.println(menu);
+
             String input = sc.nextLine();
 
             try {
@@ -40,49 +76,17 @@ public class GeometryCanvas {
 
             try {
 
-                if (command == 1 && !thereWasAConversionError) {
-                    //array = Arrays.copyOf(array, array.length + 1);
-                    System.out.println("x-coordinate of upper left corner?");
-                    x = sc.nextInt();
-                    System.out.println("y-coordinate of upper left corner?");
-                    y = sc.nextInt();
-                    System.out.println("Length of side?");
-                    length = sc.nextInt();
-                    Point corner1 = new Point(x, y);
-                    Square square = new Square(corner1, length);
-                    //array.add(square);
-                    myShapeDictionary.get("Squares").add(square);
-                } else if (command == 2 && !thereWasAConversionError) {
-                    //array = Arrays.copyOf(array, array.length + 1);
-                    System.out.println("x-coordinate of center point?");
-                    x = sc.nextInt();
-                    System.out.println("y-coordinate of center point?");
-                    y = sc.nextInt();
-                    System.out.println("Radius?");
-                    length = sc.nextInt();
-                    Point center = new Point(x, y);
-                    Circle circle = new Circle(center, length);
-                    //array.add(circle);
-                    myShapeDictionary.get("Circles").add(circle);
-                } else if (command == 3 && !thereWasAConversionError) {
-                    //array = Arrays.copyOf(array, array.length + 1);
-                    System.out.println("x-coordinate of upper left corner?");
-                    x = sc.nextInt();
-                    System.out.println("y-coordinate of upper left corner?");
-                    y = sc.nextInt();
-                    System.out.println("Length of width?");
-                    length = sc.nextInt();
-                    System.out.println("Length of height?");
-                    int length2 = sc.nextInt();
-                    Point corner1 = new Point(x, y);
-                    Rectangle rectangle = new Rectangle(corner1, length, length2);
-                    //array.add(rectangle);
-                    myShapeDictionary.get("Rectangles").add(rectangle);
-                } else if (command == 4 && !thereWasAConversionError) {
-                    break;
-                } else {
-                    System.out.println("Error, try again");
+                // If you want to exit
+                if (command == NUMBER_OF_MENU_ITEMS && !thereWasAConversionError) break;
+
+                // If you chose a wrong option
+                if (command < 1 || command > NUMBER_OF_MENU_ITEMS) {
+                    System.out.println("Please, choose an option from the menu.");
+                } else if (!thereWasAConversionError) {
+                    Shape shape = factory.createShape(command, sc);   // Factory Pattern
+                    myShapeDictionary.get(supportedShapes.get(command)).add(shape);
                 }
+
             } catch (InputMismatchException e){
                 System.out.println("You didn't type a number");
             }
