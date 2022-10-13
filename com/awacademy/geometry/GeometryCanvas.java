@@ -1,6 +1,7 @@
 package com.awacademy.geometry;
 
 import com.awacademy.geometry.base.Point;
+import com.awacademy.geometry.base.Shape;
 import com.awacademy.geometry.shapes.Circle;
 import com.awacademy.geometry.shapes.Rectangle;
 import com.awacademy.geometry.shapes.Square;
@@ -16,13 +17,13 @@ public class GeometryCanvas {
     //public static int attempts = 0;
     //public static Object[] array = new Object[attempts];
     public static List<Object> array = new ArrayList<>();
-    public static Map<String, List<Object>> myShapeDictionary = new LinkedHashMap<>();
+    public static Map<String, List<Shape>> myShapeDictionary = new LinkedHashMap<>();
 
     public static void main(String[] args) {
 
-        myShapeDictionary.put("Circles", new ArrayList<Object>());
-        myShapeDictionary.put("Squares", new ArrayList<Object>());
-        myShapeDictionary.put("Rectangles", new ArrayList<Object>());
+        myShapeDictionary.put("Circles", new ArrayList<Shape>());
+        myShapeDictionary.put("Squares", new ArrayList<Shape>());
+        myShapeDictionary.put("Rectangles", new ArrayList<Shape>());
 
         while (command != 4) {
 
@@ -89,16 +90,26 @@ public class GeometryCanvas {
             //attempts++;
         }
 
-        for (String key: myShapeDictionary.keySet()) {
-            List<Object> array = myShapeDictionary.get(key);
-            if (array.size() == 0) {
-                System.out.println(String.format("There is nothing to print for key %s.", key));
-            } else {
-                System.out.println(array);
+            double totalArea = 0;
+            for (String key: myShapeDictionary.keySet()) {
+                List<Shape> array = myShapeDictionary.get(key);
+                if (array.size() == 0) {
+                    System.out.println(String.format("There is nothing to print for key %s.", key));
+                } else {
+                    System.out.println(array);
+                    for(Shape shape: array) {
+                            totalArea = totalArea + shape.calculateArea(); // Dynamic binding!!!
+                       }
+                    }
             }
-        }
+
+            System.out.println(String.format("The total area of all your shapes is %f", totalArea));
 
         }
+
+
+
+
         public static void oldExamples() {
 
         //        int point1_x = 1;
