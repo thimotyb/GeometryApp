@@ -9,17 +9,10 @@ import java.util.*;
 public class GeometryCanvas {
 
     public static int command;
-    public static int x;
-    public static int y;
-    public static int length;
-    //public static int attempts = 0;
-    //public static Object[] array = new Object[attempts];
-    public static List<Object> array = new ArrayList<>();
+
     public static Map<String, List<Shape>> myShapeDictionary = new LinkedHashMap<>();
 
     public static ShapeFactory factory = new ShapeFactory();
-
-    //public static String[] shapeNames = { "Circles", "Squares", "Rectangles" };
 
     public static LinkedHashMap<Integer, String> supportedShapes = new LinkedHashMap<>();
 
@@ -33,11 +26,6 @@ public class GeometryCanvas {
         supportedShapes.put(Integer.valueOf(1), "Square");
         supportedShapes.put(Integer.valueOf(2), "Circle");
         supportedShapes.put(Integer.valueOf(3), "Rectangle");
-
-        // TODO: Remember to align the keys of the objects with their types
-        //myShapeDictionary.put(shapeNames[0], new ArrayList<Shape>());
-        //myShapeDictionary.put(shapeNames[1], new ArrayList<Shape>());
-        //myShapeDictionary.put(shapeNames[2], new ArrayList<Shape>());
 
         for (int i: supportedShapes.keySet()) {
             myShapeDictionary.put(supportedShapes.get(i), new ArrayList<Shape>());
@@ -55,12 +43,6 @@ public class GeometryCanvas {
             for (int i: supportedShapes.keySet()) {
                 menu.append(i+". "+supportedShapes.get(i)+"\n");
             }
-
-            /*
-            menu.append("1. "+supportedShapes.get(1)+"\n");
-            menu.append("2. "+supportedShapes.get(2)+"\n");
-            menu.append("3. "+supportedShapes.get(3)+"\n");
-            */
 
             menu.append((NUMBER_OF_MENU_ITEMS)+". Stop and Exit");
 
@@ -91,7 +73,6 @@ public class GeometryCanvas {
                 System.out.println("You didn't type a number");
             }
 
-            //attempts++;
         }
 
             double totalArea = 0;
@@ -110,9 +91,6 @@ public class GeometryCanvas {
             System.out.println(String.format("The total area of all your shapes is %f", totalArea));
 
         }
-
-
-
 
         public static void oldExamples() {
 
