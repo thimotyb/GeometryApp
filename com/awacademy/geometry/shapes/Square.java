@@ -13,4 +13,12 @@ public class Square {
         this.topLeftCorner = topLeftCorner;
         this.sideLength = sideLength;
     }
+
+    @Override
+    public String toString() {
+        return "Square{" +
+                "topLeftCorner=" + topLeftCorner +
+                ", sideLength=" + sideLength +
+                '}';
+    }
 }

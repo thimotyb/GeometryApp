@@ -14,4 +14,13 @@ public class Rectangle {
         this.width = width;
         this.height = height;
     }
+
+    @Override
+    public String toString() {
+        return "Rectangle{" +
+                "topLeftCorner=" + topLeftCorner +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
+    }
 }
