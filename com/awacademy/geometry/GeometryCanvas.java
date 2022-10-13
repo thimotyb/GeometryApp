@@ -20,8 +20,8 @@ public class GeometryCanvas {
 
     public static void main(String[] args) {
 
-        myShapeDictionary.put("Squares", new ArrayList<Object>());
         myShapeDictionary.put("Circles", new ArrayList<Object>());
+        myShapeDictionary.put("Squares", new ArrayList<Object>());
         myShapeDictionary.put("Rectangles", new ArrayList<Object>());
 
         while (command != 4) {
@@ -111,9 +111,9 @@ public class GeometryCanvas {
         //p1.x = 1;
         //p1.y = 2;
 
-        int point2_x = 5;
-        int point2_y = 10;
+            int point2_y = 10;
 
+        int point2_x = 5;
         int[] point2 = { 5, 10 };
 
         Point p2 = new Point(5, 10);

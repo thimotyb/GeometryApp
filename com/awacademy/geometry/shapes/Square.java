@@ -1,8 +1,9 @@
 package com.awacademy.geometry.shapes;
 
 import com.awacademy.geometry.base.Point;
+import com.awacademy.geometry.base.Shape;
 
-public class Square {
+public class Square implements Shape {
 
     // Fields
     Point topLeftCorner;
@@ -20,5 +21,13 @@ public class Square {
                 "topLeftCorner=" + topLeftCorner +
                 ", sideLength=" + sideLength +
                 '}';
+    }
+
+    public double calculatePerimeter() {
+        return sideLength*4;
+    }
+
+    public double calculateArea() {
+        return sideLength*sideLength;
     }
 }

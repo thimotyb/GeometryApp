@@ -1,8 +1,9 @@
 package com.awacademy.geometry.shapes;
 
 import com.awacademy.geometry.base.Point;
+import com.awacademy.geometry.base.Shape;
 
-public class Circle {
+public class Circle implements Shape {
 
     Point center;
     int radius;
@@ -19,4 +20,13 @@ public class Circle {
                 ", radius=" + radius +
                 '}';
     }
+
+    public double calculateArea() {
+        return 3.14d*radius*radius;
+    }
+
+    public double calculatePerimeter() {
+        return 2*3.14d*radius;
+    }
+
 }
