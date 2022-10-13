@@ -14,7 +14,7 @@ public class GeometryCanvas {
 
     public static ShapeFactory factory = new ShapeFactory();
 
-    public static LinkedHashMap<Integer, String> supportedShapes = new LinkedHashMap<>();
+
 
     /**
      * OCP: Open Closed Principle
@@ -23,15 +23,11 @@ public class GeometryCanvas {
      */
     public static void main(String[] args) {
 
-        supportedShapes.put(Integer.valueOf(1), "Square");
-        supportedShapes.put(Integer.valueOf(2), "Circle");
-        supportedShapes.put(Integer.valueOf(3), "Rectangle");
-
-        for (int i: supportedShapes.keySet()) {
-            myShapeDictionary.put(supportedShapes.get(i), new ArrayList<Shape>());
+        for (int i: ShapeFactory.supportedShapes.keySet()) {
+            myShapeDictionary.put(ShapeFactory.supportedShapes.get(i), new ArrayList<Shape>());
         }
 
-        final int NUMBER_OF_MENU_ITEMS = supportedShapes.size()+1;
+        final int NUMBER_OF_MENU_ITEMS = ShapeFactory.supportedShapes.size()+1;
 
         while (command != NUMBER_OF_MENU_ITEMS) {
 
@@ -40,8 +36,8 @@ public class GeometryCanvas {
 
             StringBuilder menu = new StringBuilder("Which shape would you like to add?\n");
 
-            for (int i: supportedShapes.keySet()) {
-                menu.append(i+". "+supportedShapes.get(i)+"\n");
+            for (int i: ShapeFactory.supportedShapes.keySet()) {
+                menu.append(i+". "+ShapeFactory.supportedShapes.get(i)+"\n");
             }
 
             menu.append((NUMBER_OF_MENU_ITEMS)+". Stop and Exit");
@@ -66,7 +62,7 @@ public class GeometryCanvas {
                     System.out.println("Please, choose an option from the menu.");
                 } else if (!thereWasAConversionError) {
                     Shape shape = factory.createShape(command, sc);   // Factory Pattern
-                    myShapeDictionary.get(supportedShapes.get(command)).add(shape);
+                    myShapeDictionary.get(ShapeFactory.supportedShapes.get(command)).add(shape);
                 }
 
             } catch (InputMismatchException e){
