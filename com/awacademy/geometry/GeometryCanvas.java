@@ -6,6 +6,9 @@ import com.awacademy.geometry.factory.ShapeFactory;
 
 import java.util.*;
 
+/**
+ * This is a demonstration of the Factory Pattern and of Dynamic Binding in OOP
+ */
 public class GeometryCanvas {
 
     public static int command;
