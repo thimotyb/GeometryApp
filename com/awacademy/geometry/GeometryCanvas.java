@@ -32,7 +32,7 @@ public class GeometryCanvas {
 
         final int NUMBER_OF_MENU_ITEMS = ShapeFactory.supportedShapes.size()+1;
 
-        // This is a general iteration on a variable number of items
+        // This is a general iteration on a variable number of items, very interesting!
         while (command != NUMBER_OF_MENU_ITEMS) {
 
             boolean thereWasAConversionError = false;
